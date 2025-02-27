@@ -1,0 +1,29 @@
+
+
+Beskrivelse
+
+Dette er en fortsættelse af Part I og Part II, hvor der nu skal oprettes en ny server i et andet programmeringssprog. Derudover skal de to servere kommunikere med hinanden.
+
+Server A (Python/FastAPI) henter data fra Server B (Node.js/Express)
+
+Server B (Node.js/Express) henter data fra Server A (Python/FastAPI)
+
+Når en klient sender en GET-request til den ene server, henter den data fra den anden og returnerer det som respons.
+
+Indhold
+
+node_server_b (Node.js + Express)
+
+app.js - Express-serveren, der eksponerer data fra data_files/ og kan hente data fra Server A.
+
+data_files/ - Indeholder eksempelfiler i forskellige formater.
+
+package.json - Projektets afhængigheder.
+
+python_server_a (Python + FastAPI)
+
+main.py - FastAPI-serveren, der eksponerer data fra data_files/ og kan hente data fra Server B.
+
+data_files/ - Indeholder eksempelfiler i forskellige formater.
+
+pyproject.toml - Poetry-konfiguration til afhængigheder.

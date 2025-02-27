@@ -1,0 +1,23 @@
+I denne opgave implementeres to data-parsere, én i Node.js og én i Python. Begge læser og parser data fra forskellige filtyper.
+
+📝 Indhold:
+
+data_files/ → Samme datasæt som i 00/.
+
+parser_node/ → Node.js Parser
+
+DataParser.js → Parser skrevet i Node.js, der læser og returnerer TXT, JSON, YAML, XML og CSV filer.
+
+package.json & package-lock.json → Dependencies til Node.js.
+
+parser_python/ → Python Parser
+
+DataParser.py → Python-parser, der gør præcis det samme som Node.js parseren.
+
+🚀 Funktionalitet:
+
+Sammenligning mellem Node.js og Python-parsere.
+
+Demonstration af synkron vs. asynkron filbehandling i JavaScript.
+
+Brug af yaml, xml.etree.ElementTree, csv, json i Python.

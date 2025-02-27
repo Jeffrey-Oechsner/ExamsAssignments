@@ -1,0 +1,25 @@
+I denne mappe har vi to servere, en Node.js (Express) og en Python (FastAPI), som kommunikerer med hinanden ved at hente data fra hinanden.
+
+📝 Indhold:
+
+node_server_b/ → Express server
+
+app.js → Indeholder API-endpoints til at læse filer og hente data fra FastAPI-serveren.
+
+data_files/ → Datafilerne som serveren læser.
+
+python_server_a/ → FastAPI server
+
+main.py → Indeholder API-endpoints til at læse filer og hente data fra Express-serveren.
+
+data_files/ → Datafilerne som serveren læser.
+
+pyproject.toml & poetry.lock → Dependencies til Python.
+
+🚀 Funktionalitet:
+
+Express server kan hente data fra FastAPI via HTTP-anmodninger (axios i Node.js).
+
+FastAPI server kan hente data fra Express via requests i Python.
+
+Begge kan returnere JSON-data fra de forskellige filformater.

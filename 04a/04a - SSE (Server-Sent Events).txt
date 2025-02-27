@@ -1,0 +1,9 @@
+I denne opgave arbejdes der med Server-Sent Events (SSE), hvor en server kan sende kontinuerlige dataopdateringer til en klient uden, at klienten behøver at lave gentagne anmodninger.
+
+Indhold
+
+public/ - Indeholder en HTML-fil (index.html), der modtager SSE-opdateringer fra serveren.
+
+app.js - Express-serveren, der håndterer SSE-forbindelser og sender opdateringer til klienter.
+
+package.json - Projektets afhængigheder.
