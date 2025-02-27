@@ -1,0 +1,20 @@
+{
+  "dependencies": {
+    "csv-parser": "^3.2.0",
+    "express": "^4.21.2",
+    "express_server": "file:",
+    "js-yaml": "^4.1.0",
+    "xml2js": "^0.6.2"
+  },
+  "name": "express_server",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
