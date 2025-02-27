@@ -7,4 +7,12 @@ poetry add uvicorn fastapi add dependecy
 uvicorn main:app --reload start serveren up
 
 exit
- 
+
+
+Initialiser et nyt Poetry-projekt = poetry init -n
+Tilføj nødvendige afhængigheder = poetry add uvicorn fastapi
+Start Poetry-shell = poetry run powershell
+start unicorn = poetry run uvicorn main:app --reload
+start unicorn = uvicorn main:app --reload
+poetry run cmd
+poetry env use "C:\Users\jeffo\AppData\Local\Programs\Python\Python313\python.exe"   

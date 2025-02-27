@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "axios": "^1.8.1",
+    "csv-parser": "^3.2.0",
+    "express": "^4.21.2",
+    "js-yaml": "^4.1.0",
+    "node_server_b": "file:",
+    "xml2js": "^0.6.2"
+  },
+  "name": "node_server_b",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
