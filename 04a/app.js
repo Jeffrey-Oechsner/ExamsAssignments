@@ -33,3 +33,5 @@ app.listen(PORT, () => console.log("Server is running on port", PORT));
 // sende fra 3 steder: browser html / js , direkte i browser consolen. rest i api client. Server-sent events (SSE))
 
 // husk pros and cons ved SSE, short polling og long polling.
+
+// Det virker!""
