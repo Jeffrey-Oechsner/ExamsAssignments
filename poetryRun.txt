@@ -1,0 +1,10 @@
+poetry init -n start poetry
+
+poetry shell start visual maskine
+
+poetry add uvicorn fastapi add dependecy
+
+uvicorn main:app --reload start serveren up
+
+exit
+ 

@@ -1,0 +1,6 @@
+# Ignorer node_modules og andre midlertidige filer
+node_modules/
+*.log
+*.lock
+.DS_Store
+.env
