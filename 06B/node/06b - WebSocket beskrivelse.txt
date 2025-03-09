@@ -1,5 +1,7 @@
 Beskrivelse af WebSocket-koden
 
+Brug gerne postman - ws://localhost:8080 i postman som websocket client.
+
 Denne kode implementerer en simpel WebSocket-chat ved hjælp af Node.js og ws-biblioteket.
 Den består af to dele:
 
