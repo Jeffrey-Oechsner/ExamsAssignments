@@ -1,0 +1,18 @@
+Beskrivelse af WebSocket-koden
+
+Denne kode implementerer en simpel WebSocket-chat ved hjælp af Node.js og ws-biblioteket.
+Den består af to dele:
+
+    server.js (WebSocket-serveren)
+        Opretter en WebSocket-server på port 8080.
+        Håndterer nye forbindelser fra klienter.
+        Modtager beskeder fra klienter og sender dem videre til alle tilsluttede klienter.
+
+    client.js (WebSocket-klienten)
+        Opretter en forbindelse til WebSocket-serveren.
+        Giver brugeren mulighed for at skrive beskeder via terminalen.
+        Modtager og viser beskeder sendt fra andre klienter.
+
+Test:
+
+    WebSocket-forbindelsen kan testes ved at starte server.js, og derefter starte flere client.js instanser eller bruge Postman til at sende beskeder.
