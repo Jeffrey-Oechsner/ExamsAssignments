@@ -1,0 +1,49 @@
+Exposee Dokumentation – PostgreSQL
+
+Din opgave som integrator
+•	Forbind til databasen med de forskellige brugere.
+•	Test selv, hvad du kan og ikke kan som hver bruger.
+•	Prøv at læse, indsætte og slette data.
+•	Undersøg graden af granular adgang.
+•	Dokumentér alle tests med screenshots af både succeser og fejl.
+•	Hvis dokumentationen mangler noget, skal du bede mig opdatere den – ikke få hjælp privat.
+
+Database Information
+•	Host: localhost
+•	Port: 5432
+•	Database Name: secure_db
+•	Container Name: my_postgres
+
+Brugere
+Brugernavn	Password
+admin	admin
+user1	password1
+user2	password2
+user3	password3
+
+
+Sådan starter du databasen
+1.	Sørg for, at Docker er installeret og kører.
+2.	Start containeren med:
+docker start my_postgres
+3.	Tjek om containeren kører:
+docker ps
+
+Sådan forbinder du til databasen via CLI
+Forbind til databasen som en specifik bruger:
+docker exec -it my_postgres psql -U [BRUGERNAVN] -d secure_db
+
+Tabelstruktur
+Databasen indeholder en tabel ved navn sensitive_data med følgende kolonner:
+Kolonnenavn	Datatype
+id	SERIAL PRIMARY KEY
+username	TEXT
+role	TEXT
+secret_info	TEXT
+
+Når du er færdig
+Stop containeren:
+docker stop my_postgres
+
+
+
