@@ -2,3 +2,6 @@ npm create vite@latest
 cd ind i folder 01._webrtc_browser_sdp
 npm install / npm i
 npm run dev
+
+1. del skærm fra chrome client 1. tryk create offer. paste over i client 2 create offer inputfield.
+2. efter inputfield er fyldt i client 2. tryk på create answer. paste det over i client 1. og tryk på add awswer. 
