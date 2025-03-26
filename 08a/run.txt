@@ -1,0 +1,4 @@
+npm create vite@latest
+cd ind i folder 01._webrtc_browser_sdp
+npm install / npm i
+npm run dev

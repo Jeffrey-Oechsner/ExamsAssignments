@@ -32,7 +32,8 @@ docker ps
 
 Sådan forbinder du til databasen via CLI
 Forbind til databasen som en specifik bruger:
-psql -h 10.136.137.33 -p 5432 -U [BRUGERNAVN]  -d secure_db
+docker run --rm -it postgres psql "postgresql://[BRUGERNAVN]:[PASSWORD]@10.136.137.33:5432/secure_db"
+
 
 Tabelstruktur
 Databasen indeholder en tabel ved navn sensitive_data med følgende kolonner:
