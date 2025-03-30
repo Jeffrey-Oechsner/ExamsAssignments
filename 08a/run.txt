@@ -5,3 +5,8 @@ npm run dev
 
 1. del skærm fra chrome client 1. tryk create offer. paste over i client 2 create offer inputfield.
 2. efter inputfield er fyldt i client 2. tryk på create answer. paste det over i client 1. og tryk på add awswer. 
+
+Brug 2 Chrome Browser Clienter.
+1. create offer. paste output ind i den anden chrome browser SPD Offer.
+2. Når Ouput er i Browser 2 SDP Offer. klik Create Answer i Browser 2.
+3. Tage output fra Browser 2 i Create Answer.. paste det over i Browser 1 og klik Add Answer...  
