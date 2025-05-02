@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <title>Stripe Demo</title>
+</head>
+<body>
+  <h1>Stripe Checkout Demo</h1>
+  <button id="checkout">Betal 25 DKK</button>
+
+  <script src="https://js.stripe.com/v3/"></script>
+  <script>
+    const stripe = Stripe('pk_test_51RD7uCPZXuui9YqbnqYPyF5PCdQc5edlNf2f9IyPPeXYJsoCwtKmKjYGYQFDQaIp2ICSBlCtbFA2iifS92toS8hn002XcSl2Xm');
+
+    document.getElementById('checkout').addEventListener('click', async () => {
+      const res = await fetch('/create-checkout-session', { method: 'POST' });
+      const data = await res.json();
+      stripe.redirectToCheckout({ sessionId: data.id });
+    });
+  </script>
+</body>
+</html>
+

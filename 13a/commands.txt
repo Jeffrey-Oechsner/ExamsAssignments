@@ -1,0 +1,6 @@
+npm run compile
+npm run start
+npx nodemon
+
+slet node_modules og package-lock.json
+Remove-Item -Recurse -Force node_modules, package-lock.json

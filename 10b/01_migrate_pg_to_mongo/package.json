@@ -1,0 +1,21 @@
+{
+  "name": "01_migrate_pg_to_mongo",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "01_migrate_pg_to_mongo": "file:",
+    "dotenv": "^16.5.0",
+    "knex": "^3.1.0",
+    "mongodb": "^6.15.0",
+    "mongoose": "^8.13.2",
+    "pg": "^8.14.1"
+  }
+}

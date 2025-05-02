@@ -1,0 +1,11 @@
+{
+    "entryPoints": ["src/api.ts", "src/rabbitmq.ts", "src/order.ts"],
+    "out": "docs",
+    "tsconfig": "tsconfig.json",
+    "includeVersion": true,
+    "hideGenerator": true
+  }
+
+  
+  
+  
