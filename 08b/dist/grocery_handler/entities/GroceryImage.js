@@ -10,12 +10,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, CreateDateColumn } from 'typeorm';
 import { Grocery } from './Grocery.js';
 let GroceryImage = class GroceryImage {
-    constructor() {
-        this.id = 0;
-        this.image = '';
-        this.groceries = [];
-        this.createdAt = new Date();
-    }
+    id = 0;
+    image = '';
+    groceries = [];
+    createdAt = new Date();
 };
 __decorate([
     PrimaryGeneratedColumn(),

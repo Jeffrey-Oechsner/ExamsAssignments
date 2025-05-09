@@ -16,16 +16,17 @@ import { Description } from './Description.js';
 import { Deleted_Grocery } from './Deleted_Grocery.js';
 import { Amount } from './Amount.js';
 let Grocery = class Grocery {
+    id;
+    createdAt = new Date();
+    version = 1;
+    names = [];
+    images = [];
+    categories = [];
+    prices = [];
+    descriptions = [];
+    deletedGroceries = [];
+    amounts = [];
     constructor(id, name, price) {
-        this.createdAt = new Date();
-        this.version = 1;
-        this.names = [];
-        this.images = [];
-        this.categories = [];
-        this.prices = [];
-        this.descriptions = [];
-        this.deletedGroceries = [];
-        this.amounts = [];
         this.id = id;
         this.names = [{ name }];
         this.prices = [{ price }];

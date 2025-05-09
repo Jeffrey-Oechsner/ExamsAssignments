@@ -1,5 +1,13 @@
 # 08b Project Documentation
 
+Generate the Documentation
+Run the following command to generate the documentation:
+npx typedoc
+
+npm run build - rebuild the project.
+node dist/grocery_handler/server.js - start the server.
+
+
 This folder contains the implementation and documentation for the `08b` project. Below is an explanation of the folder structure and its contents:
 
 ## Folder Structure
