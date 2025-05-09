@@ -1,11 +1,11 @@
 {
-    "entryPoints": ["src/api.ts", "src/rabbitmq.ts", "src/order.ts"],
+    "entryPoints": [
+        "src/grocery_handler/**/*.ts"
+    ],
     "out": "docs",
-    "tsconfig": "tsconfig.json",
-    "includeVersion": true,
-    "hideGenerator": true
-  }
+    "name": "08b Grocery Handler Documentation",
+    "includeVersion": true
+}
 
-  
-  
-  
+
+

@@ -20,3 +20,7 @@ def register(webhook: Webhook):
 def unregister(webhook: Webhook):
     response = requests.post(f"{EXPOSEE_URL}/unregister", json=webhook.model_dump())
     return {"message": "Webhook unregistered via integrator."}
+
+@register_webhook.get("/ping")
+def test_ping():
+    return {"message": "Integrator er klar og lytter!"}

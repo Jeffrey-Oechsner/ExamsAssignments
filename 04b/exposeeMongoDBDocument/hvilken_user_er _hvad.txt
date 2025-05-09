@@ -1,0 +1,3 @@
+user 1 = admin - read og write
+user 2 = readonly
+user 3 = begrænset read.
