@@ -1,0 +1,51 @@
+Dokumentation – Webhook System (Exposee)
+Denne dokumentation er til dig, der fungerer som Integrator. Du får adgang til min FastAPI-server via localtunnel og bruger Swagger UI til at:
+- subcribe en webhook
+- Ping min server (for at sende webhook)
+- unsubcribe din webhook
+
+Alt sker gennem min server – du har ikke brug for din egen.
+LocalTunnel (min server)
+https://bright-ducks-relax.loca.lt
+URL’en kan ændre sig, hvis jeg genstarter. kontakt mig for den nyeste.
+Swagger UI – Adgang til mine endpoints
+Swagger UI er hvor du udfører alle handlinger:
+• Startside: https://bright-ducks-relax.loca.lt/docs#/
+• Register webhook: https://bright-ducks-relax.loca.lt/docs#/default/register_register_webhook_post
+• Unregister webhook: https://bright-ducks-relax.loca.lt/docs#/default/unregister_unregister_webhook_post
+• Send ping (GET): https://bright-ducks-relax.loca.lt/docs#/default/test_ping_ping_get
+
+
+
+
+Sådan fungerer det
+1. POST /register-webhook
+Du registrerer din webhook (dit endpoint, hvor du vil modtage events):
+{
+  "url": "https://din-server.loca.lt/ping",
+  "event": "payment_received"
+}
+2. GET /ping
+Når du kalder /ping, vil min server sende en POST-anmodning til alle registrerede webhook-URLs:
+{
+  "event": "payment_received"
+}
+
+Dette er måden du selv tester, om du modtager pings korrekt.
+3. POST /unregister-webhook
+Du kan til enhver tid afmelde din webhook:
+{
+  "url": "https://din-server.loca.lt/ping",
+  "event": "payment_received"
+}
+Testflow (Integrators handlinger)
+1. Gå til Swagger UI: https://bright-ducks-relax.loca.lt/docs#/
+2. Brug /register-webhook og indtast dit webhook endpoint
+3. Kør /ping for at få min server til at sende POST til dig
+4. Afmeld dig selv med /unregister-webhook
+Klar til brug
+✔️ Du behøver ingen ekstra kode eller webserver
+✔️ Du bruger kun Swagger UI
+✔️ Du styrer hele integrationen fra mine endpoints
+
+Spørg mig, hvis du har brug for at få localtunnel åbnet igen.

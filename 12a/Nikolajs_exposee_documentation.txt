@@ -1,0 +1,26 @@
+Exposee Dokumentation - Webhook System
+Dokumentationen er skrevet med henblik på at integrere med Postman. Systemet er opsat med et invoice tema, hvorpå at integrator vil kalde et /ping endpoint for at bekræfte, at en invoice er blevet betalt.
+Register din webook med mit system:
+Send en POST request til denne url: “https://opgave12a.loca.lt/webhooks/register” 
+Med dette indhold:
+{
+  "url": "https://yourname12a.loca.lt/webhook",
+  "events": ["invoice_paid", "invoice_created"]
+}
+
+Hvis registreringen er successful, så skulle du gerne se en besked om at din webhook er registreret, samt en HTTP 200 kode i Postman 
+Test efterfølgende om du kan sende et ping til din registeret webhook
+Dette kan gøres ved at sende en GET request i Postman til denne url: “https://opgave12a.loca.lt/ping” 
+
+Hvis dit ping er gået igennem, så skulle du gerne se den korrekte payload besked i Postman som b.l.a nævner klokkeslæt, invoice-ID, beløb og anvendt valuta.
+Til Sidst kan du afmelde din webhook
+Send en POST request til denne url: “https://opgave12a.loca.lt/webhooks/unregister”
+Med dette indhold: 
+{
+  "url": "https://yourname12a.loca.lt/webhook"
+}
+
+Hvis afmeldingen er successful, så skulle du igen gerne se en besked om at din webhook er afmeldt, samt en HTTP 200 kode i Postman 
+
+
+-	Bemærk at de anvendte Localtunnel url’er skal være kørende
