@@ -28,6 +28,7 @@ async function migrateUsers() {
     const users = await pg('users').select('*');
     console.log(`🔁 Migrerer ${users.length} brugere til MongoDB...`);
 
+    // INTEGRATION POINT: Her overføres data fra PostgreSQL til MongoDB
     await mongo.connect();
     const db = mongo.db(); // default DB fra URI (f.eks. "mymongo")
     const result = await db.collection('users').insertMany(users);

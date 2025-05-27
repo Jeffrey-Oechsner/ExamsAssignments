@@ -14,6 +14,7 @@ const rl = readline.createInterface({
 ws.on("open", () => {
     console.log("Forbundet til WebSocket-serveren. Skriv en besked:");
 
+    // Integration point: Sending user input to the WebSocket server
     rl.on("line", (input) => {
         ws.send(input);  // Send input til WebSocket-serveren
     });

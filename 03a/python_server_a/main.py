@@ -79,6 +79,7 @@ def read_txt_file():
 
 
 # Hent data fra `node_server_b`
+# Integration point: Fetches data from the Node.js server's `/json` endpoint using the requests library.
 @app.get("/from-node")
 def get_from_node():
     try:

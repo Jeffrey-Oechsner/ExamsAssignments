@@ -18,6 +18,8 @@ app.use(express.json());
 // Route: Create checkout session
 app.post('/create-checkout-session', async (req, res) => {
   try {
+    // STRIPE INTEGRATION STARTER HER
+    // Her oprettes Stripe checkout session og integrationen sker
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: [{
@@ -34,6 +36,7 @@ app.post('/create-checkout-session', async (req, res) => {
       success_url: `${process.env.DOMAIN}/success.html`,
       cancel_url: `${process.env.DOMAIN}/cancel.html`,
     });
+    // STRIPE INTEGRATION SLUTTER HER
 
     res.json({ id: session.id });
   } catch (err) {

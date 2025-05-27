@@ -12,87 +12,104 @@ Tool anvendt: Knex.js (query builder og migrationsværktøj)
 Denne opgave dokumenterer en PostgreSQL-database ved hjælp af **Knex.js** – et SQL query builder-værktøj for Node.js.  
 Knex bruges her til at **oprette tabeller (migrations)** og **indsætte testdata (seeds)**.
 
-⚙️ Setup & Teknisk miljø
-Komponent	Beskrivelse
-PostgreSQL	Database kørt i en Docker-container
-Knex.js	Tool til migration og seed via Node.js
-Docker Compose	Til at spinne databasen op lokalt
-.env-fil	Indeholder konfigurationsvariabler
-
-🧰 Værktøjer og teknologier anvendt
-Værktøj / Teknologi	Beskrivelse
-PostgreSQL	Relationsdatabase til lagring af data. Kører i Docker-container.
-Docker & Docker Compose	Til at spinne PostgreSQL op lokalt med miljøvariabler og volumes.
-Knex.js	Node.js-baseret query builder. Bruges til migration og seed af databasen.
-Node.js	JavaScript-runtime brugt til at køre Knex og scripts.
-dotenv	Loader miljøvariabler fra .env fil til Node.js-applikationen.
-psql (PostgreSQL CLI)	Command line-værktøj til at tilgå databasen og inspicere tabeller/data.
-VSCode (valgfri)	Editor til at skrive migrations, seed og konfigurationsfiler.
-Markdown / README.md	Dokumentation af databasen og processen.
-(Valgfri) ER-diagramværktøj	fx dbdiagram.io eller draw.io til at vise datamodel.
 ---
 
-🧱 Struktur af databasen
+## 🧩 Hvordan virker koden?
+
+### 1. Konfiguration
+- `knexfile.js` indeholder databasekonfigurationen (hvilken database, bruger, password, host osv.).
+- Miljøvariabler hentes fra `.env`-filen.
+
+### 2. Migrationer
+- I mappen `/migrations` findes migrationsfiler, fx `20250411093547_create_users_products_table.js`.
+- Her defineres tabellerne `users` og `products` med deres felter og datatyper.
+
+### 3. Seeds
+- I mappen `/seeds` findes seed-filer, fx `seed_users.js`, som indsætter testdata i tabellerne.
+
+### 4. Integration med applikationen
+- I `index.js` integreres Knex med applikationen:
+  - Her importeres Knex og konfigurationen.
+  - Forbindelsen til databasen oprettes:
+    ```js
+    // INTEGRATION POINT: Her integreres Knex med applikationen ved at oprette en databaseforbindelse
+    const db = knex(knexConfig);
+    ```
+  - Herefter kan du lave queries mod databasen via `db`-objektet.
+
+### 5. Kørsel
+- Migrationer og seeds køres med Knex CLI:
+  - `npx knex migrate:latest` opretter tabellerne.
+  - `npx knex seed:run` indsætter testdata.
+
+---
+
+## 📍 Hvor sker integrationen?
+- **Integration sker i `index.js`** hvor følgende linje opretter forbindelsen mellem Node.js og databasen via Knex:
+  ```js
+  // INTEGRATION POINT: Her integreres Knex med applikationen ved at oprette en databaseforbindelse
+  const db = knex(knexConfig);
+  ```
+
+---
+
+## ✅ Fordele og ulemper ved denne løsning
+
+### Fordele
+- **Kodebaseret skemadefinition:** Alt database-design og ændringer versionstyres i kode.
+- **Nem versionering:** Migrationer gør det let at spole frem/tilbage i databaseændringer.
+- **Automatiseret testdata:** Seeds gør det nemt at fylde testdata på databasen.
+- **Miljøuafhængig:** Kan nemt flyttes mellem udviklingsmiljøer (Docker, lokal, cloud).
+- **Let at integrere med Node.js:** Knex fungerer godt sammen med moderne JavaScript/TypeScript.
+
+### Ulemper
+- **Abstraktion:** Man mister noget af den "rå" SQL-følelse og kontrol.
+- **Læringskurve:** Kræver forståelse for både Knex og SQL.
+- **Mindre egnet til meget komplekse queries:** Knex er bedst til simple til moderate queries.
+
+---
+
+## 🧱 Struktur af databasen
 🔹 Tabeller
 
 users
 
     id – integer, primær nøgle
-
     first_name – varchar(255)
-
     last_name – varchar(255)
 
 products
 
     id – integer, primær nøgle
-
     name – varchar(1000)
-
     price – decimal
 
+---
 
-🛠️ Implementeringsproces
+## 🛠️ Implementeringsproces
 1. Initiering
 
-npm init -y
-npm install knex pg dotenv
-npx knex init
+    npm init -y
+    npm install knex pg dotenv
+    npx knex init
 
-🧱 Migration: Opret skema
+2. Migration: Opret skema
 
-npx knex migrate:make create_users_products_table
-Kør migration
+    npx knex migrate:make create_users_products_table
+    npx knex migrate:latest
 
-npx knex migrate:latest
+3. Seed data
 
-🌱 Seed data
+    npx knex seed:make seed_users
+    npx knex seed:run
 
-npx knex seed:make seed_users
+4. Verificering
 
-Kør seeding
+    docker exec -it <container_id> psql -U myuser -d mydatabase
+    \dt
+    SELECT * FROM users;
 
-npx knex seed:run
-
-🧪 Verificering
-
-Inde i containeren:
-
-docker exec -it <container_id> psql -U myuser -d mydatabase
-
-Tjek tabeller:
-
-\dt
-SELECT * FROM users;
-
-
-
-
-
-
-
-
-
+---
 
 ## 🧰 Teknologier brugt
 
@@ -118,26 +135,11 @@ products
 ├── id (int, primary key)
 ├── name (varchar)
 └── price (decimal)
+```
 
+---
 
-Setup:
-1. Clone repo og installér dependencies
-
-npm install
-
-2. Start PostgreSQL med Docker
-
-docker compose up
-
-3. Kør migration
-
-npx knex migrate:latest
-
-4. Kør seed for testdata
-
-npx knex seed:run
-
-📋 Eksempeldata (fra seeding)
+## Eksempeldata (fra seeding)
 
 -- SELECT * FROM users;
 +----+------------+-----------+
@@ -148,16 +150,18 @@ npx knex seed:run
 | 3  | Alice      | Johnson   |
 +----+------------+-----------+
 
-📦 Backup & Dokumentation (Bonus)
+---
 
-    Backup kan foretages via:
+## 📦 Backup & Dokumentation (Bonus)
 
-docker exec -T <container_id> pg_dump -U myuser mydatabase > pgdump.sql
+Backup kan foretages via:
 
-    Dokumentation er i denne README
+    docker exec -T <container_id> pg_dump -U myuser mydatabase > pgdump.sql
 
-    Migrationer og seeds findes i mappen:
+Dokumentation er i denne README
 
-        /migrations
+Migrationer og seeds findes i mapperne:
 
-        /seeds
+    /migrations
+    /seeds
+```

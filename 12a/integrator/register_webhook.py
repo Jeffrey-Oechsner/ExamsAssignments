@@ -13,11 +13,13 @@ class Webhook(BaseModel):
 
 @register_webhook.post("/register-webhook")
 def register(webhook: Webhook):
+    # INTEGRATION POINT: This is where Integrator calls Exposee to register a webhook
     response = requests.post(f"{EXPOSEE_URL}/register", json=webhook.model_dump())
     return {"message": "Webhook registered via integrator."}
 
 @unregister_webhook.post("/unregister-webhook")
 def unregister(webhook: Webhook):
+    # INTEGRATION POINT: This is where Integrator calls Exposee to unregister a webhook
     response = requests.post(f"{EXPOSEE_URL}/unregister", json=webhook.model_dump())
     return {"message": "Webhook unregistered via integrator."}
 

@@ -40,6 +40,7 @@ const resolvers = {
 
 const schema = makeExecutableSchema({ typeDefs, resolvers });
 
+// INTEGRATION POINT: GraphQL schema and resolvers are integrated here with Apollo Server and WebSocketServer
 const wsServer = new WebSocketServer({
   server: httpServer,
   path: '/graphql',

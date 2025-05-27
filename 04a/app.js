@@ -4,7 +4,7 @@ const app = express();
 
 app.use(express.static('public'));
 
-app.get("/synchronizetime", (req, res) => {
+app.get("/synchronizetime", (req, res) => { // Integration point: This endpoint handles the SSE connection with the client.
     res.writeHead(200, {
         "Content-Type": "text/event-stream",
         "Cache-Control": "no-cache",

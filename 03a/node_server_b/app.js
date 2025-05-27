@@ -58,6 +58,7 @@ app.get('/csv', (req, res) => {
 });
 
 // 📌 **Hent data fra FastAPI (Server A)**
+// Integration point: This endpoint fetches data from the FastAPI server's `/read-json` endpoint using axios.
 app.get('/from-fastapi', async (req, res) => {
     try {
         const response = await axios.get('http://127.0.0.1:8000/read-json'); // Skift endpoint hvis nødvendigt

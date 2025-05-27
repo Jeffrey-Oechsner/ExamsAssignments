@@ -59,6 +59,7 @@ async function createAnswer() {
   if (!offer) return alert("Offer is required");
   offer = JSON.parse(offer);
 
+  // INTEGRATION POINT: Her integreres SDP offer fra client 1 til client 2
   await peerConnection.setRemoteDescription(offer);
 
   const answer = await peerConnection.createAnswer();

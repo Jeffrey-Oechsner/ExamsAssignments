@@ -30,6 +30,7 @@ const users = [
   { id: 1, email: 'jeffoech1995@gmail.com', password: '1234' }
 ];
 
+// PASSPORT-LOCAL INTEGRATION STARTER HER
 // Strategy
 passport.use(new LocalStrategy({
   usernameField: 'email',
@@ -39,6 +40,7 @@ passport.use(new LocalStrategy({
   if (!user) return done(null, false, { message: 'Forkert login' });
   return done(null, user);
 }));
+// PASSPORT-LOCAL INTEGRATION SLUTTER HER
 
 passport.serializeUser((user, done) => {
   done(null, user.id);

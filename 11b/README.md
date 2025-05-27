@@ -44,6 +44,70 @@ npm start
 
 Gå til http://localhost:3001 i browseren og klik på betalingsknappen.
 
+## Hvordan virker koden?
+
+1. **Frontend (index.html):**
+   - Brugeren klikker på "Betal 25 DKK"-knappen.
+   - En POST-request sendes til `/create-checkout-session` på serveren.
+   - Stripe.js bruges til at redirecte brugeren til Stripe Checkout med det session-id, serveren returnerer.
+
+2. **Backend (server.js):**
+   - Express-serveren håndterer requests.
+   - Når `/create-checkout-session` kaldes, oprettes en Stripe Checkout Session med produkt, pris og redirect-URLs.
+   - **Stripe integrationen sker her:**
+     ```js
+     // STRIPE INTEGRATION STARTER HER
+     const session = await stripe.checkout.sessions.create({ ... });
+     // STRIPE INTEGRATION SLUTTER HER
+     ```
+   - Serveren returnerer session-id til frontend, som bruger det til at sende brugeren til Stripe Checkout.
+   - Efter betaling sendes brugeren til `/success.html` eller `/cancel.html`.
+
+## Hvor sker Stripe integrationen?
+
+Stripe integrationen sker i `server.js` i denne route:
+```js
+app.post('/create-checkout-session', async (req, res) => {
+  // STRIPE INTEGRATION STARTER HER
+  const session = await stripe.checkout.sessions.create({ ... });
+  // STRIPE INTEGRATION SLUTTER HER
+  res.json({ id: session.id });
+});
+```
+
+## Fordele og ulemper ved denne løsning
+
+**Fordele:**
+- Meget nem at implementere og forstå.
+- Stripe Checkout håndterer sikkerhed, PCI compliance og UI.
+- Ingen kreditkortdata håndteres på din server.
+- Hurtig at tilpasse til andre produkter/priser.
+
+**Ulemper:**
+- Checkout flowet foregår på Stripes domæne (ikke "on-site").
+- Begrænset kontrol over designet af betalingsflowet.
+- Kræver internetadgang for at virke.
+- Kræver Stripe-konto og API-nøgler.
+
+## Sådan kører du projektet
+
+1. Installer dependencies:
+   ```bash
+   npm install
+   ```
+2. Opret en `.env`-fil med dine Stripe-nøgler og domæne:
+   ```env
+   PORT=3001
+   STRIPE_SECRET_KEY=sk_test_...
+   STRIPE_PUBLIC_KEY=pk_test_...
+   DOMAIN=http://localhost:3001
+   ```
+3. Start serveren:
+   ```bash
+   npm start
+   ```
+4. Gå til `http://localhost:3001` og klik på betalingsknappen.
+
 🔍 Hvor sker selve integrationen?
 
 Stripe integrationen sker i server.js, nærmere bestemt her:
