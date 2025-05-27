@@ -111,6 +111,71 @@ products
 
 ---
 
+## 🚀 Sådan kørte jeg projektet (Step-for-step)
+
+1. **Start Docker og databasen**
+   - Sørg for at Docker Desktop kører.
+   - Navigér til mappen `10a` i terminalen:
+     ```powershell
+     cd .. # hvis du står i 01._node
+     cd 10a
+     ```
+   - Opret en `.env`-fil i `10a`-mappen med:
+     ```env
+     POSTGRES_DB=mydatabase
+     POSTGRES_USER=myuser
+     POSTGRES_PASSWORD=mypassword
+     POSTGRES_HOST=localhost
+     ```
+   - Start databasen med Docker Compose:
+     ```powershell
+     docker compose up -d
+     ```
+
+2. **Installer Node.js dependencies**
+   - Gå til Node-projektmappen:
+     ```powershell
+     cd 01._node
+     ```
+   - Installer dependencies:
+     ```powershell
+     npm install
+     ```
+
+3. **Kør migrationer og seeds**
+   - Kør migrationer for at oprette tabeller:
+     ```powershell
+     npx knex migrate:latest
+     ```
+   - Kør seeds for at indsætte testdata:
+     ```powershell
+     npx knex seed:run
+     ```
+
+4. **(Valgfrit) Start applikationen**
+   - Start Node.js appen (hvis relevant):
+     ```powershell
+     node index.js
+     ```
+
+5. **(Valgfrit) Tjek databasen med psql**
+   - Find container-navnet med:
+     ```powershell
+     docker ps
+     ```
+   - Log ind i databasen:
+     ```powershell
+     docker exec -it 10a-db-1 psql -U myuser -d mydatabase
+     ```
+   - Tjek tabeller og data:
+     ```sql
+     \dt
+     SELECT * FROM users;
+     SELECT * FROM products;
+     ```
+
+---
+
 ## 🧰 Teknologier brugt
 
 | Teknologi       | Beskrivelse                             |
@@ -164,4 +229,3 @@ Migrationer og seeds findes i mapperne:
 
     /migrations
     /seeds
-```

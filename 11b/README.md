@@ -35,8 +35,9 @@ npm install
 Opret .env-fil:
 
 PORT=3001
-STRIPE_SECRET_KEY=sk_test_...
-STRIPE_PUBLIC_KEY=pk_test_...
+STRIPE_SECRET_KEY=your_stripe_secret_key_here
+STRIPE_PUBLIC_KEY=your_stripe_public_key_here
+DOMAIN=http://localhost:3001
 
 Start server:
 

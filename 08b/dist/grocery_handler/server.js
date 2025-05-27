@@ -1,3 +1,5 @@
+// TypeDoc integration: The integration happens at every JSDoc-style comment (/** ... */) above exported endpoints, classes, and functions.
+// For example, the following endpoint is documented and picked up by TypeDoc:
 import express, { Router } from "express";
 import { addGrocery, getGroceries } from "./data-source.js";
 import { Grocery } from "./entities/Grocery.js";
