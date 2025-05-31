@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
     res.send({ message: 'Velkommen til Express Data Server' });
 });
 
-// 📌 Læs TXT
+// Læs TXT
 app.get('/txt', (req, res) => {
     fs.readFile('data_files/data.txt', 'utf8', (err, data) => {
         if (err) return res.status(500).send('Fejl ved læsning af TXT-fil');
@@ -21,7 +21,7 @@ app.get('/txt', (req, res) => {
     });
 });
 
-// 📌 Læs JSON
+// Læs JSON
 app.get('/json', (req, res) => {
     fs.readFile('data_files/data.json', 'utf8', (err, data) => {
         if (err) return res.status(500).send('Fejl ved læsning af JSON-fil');
@@ -29,7 +29,7 @@ app.get('/json', (req, res) => {
     });
 });
 
-// 📌 Læs YAML
+// Læs YAML
 app.get('/yaml', (req, res) => {
     fs.readFile('data_files/data.yaml', 'utf8', (err, data) => {
         if (err) return res.status(500).send('Fejl ved læsning af YAML-fil');
@@ -37,7 +37,7 @@ app.get('/yaml', (req, res) => {
     });
 });
 
-// 📌 Læs XML
+// Læs XML
 app.get('/xml', (req, res) => {
     fs.readFile('data_files/data.xml', 'utf8', (err, data) => {
         if (err) return res.status(500).send('Fejl ved læsning af XML-fil');
@@ -48,7 +48,7 @@ app.get('/xml', (req, res) => {
     });
 });
 
-// 📌 Læs CSV
+// Læs CSV
 app.get('/csv', (req, res) => {
     const results = [];
     fs.createReadStream('data_files/data.csv')
@@ -57,7 +57,7 @@ app.get('/csv', (req, res) => {
         .on('end', () => res.json(results));
 });
 
-// 📌 **Hent data fra FastAPI (Server A)**
+// **Hent data fra FastAPI (Server A)**
 // Integration point: This endpoint fetches data from the FastAPI server's `/read-json` endpoint using axios.
 app.get('/from-fastapi', async (req, res) => {
     try {

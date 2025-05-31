@@ -60,10 +60,10 @@ async function createAnswer() {
   offer = JSON.parse(offer);
 
   // INTEGRATION POINT: Her integreres SDP offer fra client 1 til client 2
-  await peerConnection.setRemoteDescription(offer);
+  await peerConnection.setRemoteDescription(offer); // INTEGRATION POINT
 
   const answer = await peerConnection.createAnswer();
-  await peerConnection.setLocalDescription(answer);
+  await peerConnection.setLocalDescription(answer); // INTEGRATION POINT
 
   document.getElementById("sdpAnswerTextArea").textContent = JSON.stringify(answer);
 }
