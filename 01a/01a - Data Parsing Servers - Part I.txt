@@ -12,7 +12,8 @@ package.json & package-lock.json → Dependencies til Node.js.
 
 parser_python/ → Python Parser
 
-DataParser.py → Python-parser, der gør præcis det samme som Node.js parseren.
+DataParser.py → Python-parser, der gør præcis det samme som Node.js parseren. 
+py DataParser.py for at run DataParser.py
 
 🚀 Funktionalitet:
 
