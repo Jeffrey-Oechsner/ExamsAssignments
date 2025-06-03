@@ -13,3 +13,5 @@ export async function seed(knex) {
     { id: 3, first_name: 'Alice', last_name: 'Johnson' },
   ]);
 }
+
+// `npx knex seed:run` sletter users data i tabellen og indsætter nye users data.

@@ -10,3 +10,7 @@ export function up(knex) {
     return knex.schema.dropTable('users');
   }
   
+ //laver file name med timestamp, så kan laver flere med rækkefølge
+  // `npx knex migrate:latest` for at oprette tabellerne
+  // `npx knex migrate:rollback` for at slette tabellerne
+  

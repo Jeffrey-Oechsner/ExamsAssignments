@@ -4,7 +4,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { MongoClient } from 'mongodb';
 
-// 🛠 Brug korrekt sti til .env når den ligger i ../
+// Brug korrekt sti til .env når den ligger i ../
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
@@ -22,20 +22,20 @@ const pg = knex({
 // 🔌 MongoDB opsætning
 const mongo = new MongoClient(process.env.MONGO_URI);
 
-// 🔄 Migration funktion
+// Migration funktion
 async function migrateUsers() {
   try {
     const users = await pg('users').select('*');
-    console.log(`🔁 Migrerer ${users.length} brugere til MongoDB...`);
+    console.log(`Migrerer ${users.length} brugere til MongoDB...`);
 
-    // INTEGRATION POINT: Her overføres data fra PostgreSQL til MongoDB
     await mongo.connect();
     const db = mongo.db(); // default DB fra URI (f.eks. "mymongo")
-    const result = await db.collection('users').insertMany(users);
+    // INTEGRATION POINT: Her overføres data fra PostgreSQL til MongoDB
+    const result = await db.collection('users').insertMany(users); 
 
-    console.log(`✅ Migreret ${result.insertedCount} brugere.`);
+    console.log(`Migreret ${result.insertedCount} brugere.`);
   } catch (error) {
-    console.error('❌ Migration fejlede:', error);
+    console.error('Migration fejlede:', error);
   } finally {
     await mongo.close();
     await pg.destroy();
