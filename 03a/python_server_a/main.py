@@ -25,6 +25,7 @@ def read_root():
 
 @app.get("/read-json")
 def read_json_file():
+    # Return: dict (Python dictionary)
     file_path = DATA_DIR / "data.json"
     check_file_exists(file_path)
     with open(file_path, "r", encoding="utf-8") as f:
@@ -34,6 +35,7 @@ def read_json_file():
 
 @app.get("/read-csv")
 def read_csv_file():
+    # Return: list af dicts (liste af Python dictionaries)
     file_path = DATA_DIR / "data.csv"
     check_file_exists(file_path)
     data = []
@@ -46,6 +48,7 @@ def read_csv_file():
 
 @app.get("/read-yaml")
 def read_yaml_file():
+    # Return: dict (Python dictionary)
     file_path = DATA_DIR / "data.yaml"
     check_file_exists(file_path)
     with open(file_path, "r", encoding="utf-8") as f:
@@ -55,12 +58,12 @@ def read_yaml_file():
 
 @app.get("/read-xml")
 def read_xml_file():
+    # Return: list af dicts (liste af Python dictionaries)
     file_path = DATA_DIR / "data.xml"
     check_file_exists(file_path)
     tree = ET.parse(file_path)
     root = tree.getroot()
 
-    # Convert XML data to a dictionary
     def xml_to_dict(element):
         return {child.tag: child.text for child in element}
 
@@ -71,6 +74,7 @@ def read_xml_file():
 # Route til at læse en TXT-fil
 @app.get("/read-txt")
 def read_txt_file():
+    # Return: dict med key 'txt' og value som string
     file_path = DATA_DIR / "data.txt"
     check_file_exists(file_path)
     with open(file_path, "r", encoding="utf-8") as f:
@@ -82,8 +86,9 @@ def read_txt_file():
 # Integration point: Fetches data from the Node.js server's `/json` endpoint using the requests library.
 @app.get("/from-node")
 def get_from_node():
+    # Return: dict (Python dictionary) – med nøgler og værdier fra Node.js-serveren
     try:
-        response = requests.get("http://127.0.0.1:8080/json")  # Ret til et andet endpoint om nødvendigt
+        response = requests.get("http://127.0.0.1:8080/json")
         return response.json()
     except Exception as e:
         return {"error": str(e)}
