@@ -6,7 +6,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 
-// Setup __dirname i ES Modules
+// Setup __dirname i ES Modules, gør det muligt at bruge korrekt stier i ES Modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -16,16 +16,16 @@ dotenv.config();
 const app = express();
 
 // Body parser
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false })); // gør det muligt at læse data fra HTML (login-formularen)
 
-// Session config
+// Session config - se hvem der er logget ind
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false
 }));
 
-// Passport init
+// Starter Passport og kobler det til sessionen  
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -35,7 +35,7 @@ const users = [
 ];
 
 // PASSPORT-LOCAL INTEGRATION STARTER HER
-// Strategy
+// LocalStrategy brugeas til at autentificere users med email og password i arrayet.
 passport.use(new LocalStrategy({
   usernameField: 'email',
   passwordField: 'password'
@@ -46,16 +46,18 @@ passport.use(new LocalStrategy({
 }));
 // PASSPORT-LOCAL INTEGRATION SLUTTER HER
 
+// serializeUser gemmer users id i sessionen, når useren logger ind.
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 
+// deserializeUser henter users ud fra id'et i sessionen, så passport kan finde ud af, hvem der er logget ind.
 passport.deserializeUser((id, done) => {
   const user = users.find(u => u.id === id);
   done(null, user);
 });
 
-// Serve statiske filer fra public/
+// Serve statiske filer fra public/ f.eks login.html / css fil. 
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
@@ -67,15 +69,18 @@ app.get('/', (req, res) => {
   }
 });
 
+// /Login viser login-formular. 
 app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'login.html'));
 });
 
+// /Login håndterer login-formularen og autentificerer brugeren med Passport.
 app.post('/login', passport.authenticate('local', {
   successRedirect: '/',
   failureRedirect: '/login?error=true'
 }));
 
+// /Logout håndterer logout og fjerner brugeren fra sessionen.
 app.get('/logout', (req, res) => {
   req.logout(err => {
     if (err) return next(err);
