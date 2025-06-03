@@ -4,10 +4,14 @@ import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import dotenv from 'dotenv';
 
 // Setup __dirname i ES Modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+// Load .env fil
+dotenv.config();
 
 const app = express();
 
@@ -16,7 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // Session config
 app.use(session({
-  secret: 'hemmelig123',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false
 }));
