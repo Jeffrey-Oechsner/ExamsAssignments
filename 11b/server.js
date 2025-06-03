@@ -6,14 +6,15 @@ import { fileURLToPath } from 'url';
 
 dotenv.config();
 const app = express();
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY); // opretter Stripe klient med Secret Key fra .env
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Middleware
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.json());
+app.use(express.static(path.join(__dirname, 'public')));//sætter public folder som statisk, så vi kan servere 
+// HTML, CSS og JS filer
+app.use(express.json()); // modtage JSON data fra post requests
 
 // Route: Create checkout session
 app.post('/create-checkout-session', async (req, res) => {
