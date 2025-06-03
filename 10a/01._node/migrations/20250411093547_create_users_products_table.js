@@ -20,3 +20,5 @@ export function up(knex) {
   
 
   //laver file name med timestamp, så kan laver flere med rækkefølge
+  // `npx knex migrate:latest` for at oprette tabellerne
+  // `npx knex migrate:rollback` for at slette tabellerne
