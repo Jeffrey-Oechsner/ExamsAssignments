@@ -59,11 +59,11 @@ async function createAnswer() {
   if (!offer) return alert("Offer is required");
   offer = JSON.parse(offer);
 
-  // INTEGRATION POINT: Her integreres SDP offer fra client 1 til client 2
-  await peerConnection.setRemoteDescription(offer); // INTEGRATION POINT
+  // HER ER INTEGRATIONEN: Her integreres SDP offer fra client 1 til client 2
+  await peerConnection.setRemoteDescription(offer);
 
   const answer = await peerConnection.createAnswer();
-  await peerConnection.setLocalDescription(answer); // INTEGRATION POINT
+  await peerConnection.setLocalDescription(answer);
 
   document.getElementById("sdpAnswerTextArea").textContent = JSON.stringify(answer);
 }
@@ -73,6 +73,7 @@ async function addAnswer() {
   if (!answer) return alert("Answer is required");
   answer = JSON.parse(answer);
 
+  // HER ER INTEGRATIONEN: Her integreres SDP answer fra client 2 til client 1
   if (!peerConnection.currentRemoteDescription) {
     await peerConnection.setRemoteDescription(answer);
   }
