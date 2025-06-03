@@ -40,7 +40,10 @@ const resolvers = {
 
 const schema = makeExecutableSchema({ typeDefs, resolvers });
 
-// INTEGRATION POINT: GraphQL schema and resolvers are integrated here with Apollo Server and WebSocketServer
+// INTEGRATION POINT: Her samles GraphQL-schema og resolvers, og både Apollo Server (HTTP) 
+// og WebSocketServer (realtid/subscriptions) startes med det samme schema. 
+// Det betyder, at queries, mutations og subscriptions alle virker på samme endpoint.
+// integration sker her start
 const wsServer = new WebSocketServer({
   server: httpServer,
   path: '/graphql',
@@ -49,7 +52,8 @@ const wsServer = new WebSocketServer({
 // Hand in the schema we just created and have the
 // WebSocketServer start listening.
 const serverCleanup = useServer({ schema }, wsServer);  
-  
+
+// Her oprettes Apollo Server, som håndterer queries og mutations via HTTP med det samlede schema.
 const server = new ApolloServer({ 
   schema,
   introspection: true,  // Enable introspection for field descriptions
@@ -65,7 +69,7 @@ const server = new ApolloServer({
       }
     }
   ],
-});
+}); // integrationen sker her slut
 
 await server.start();
 
