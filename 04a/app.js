@@ -6,9 +6,9 @@ app.use(express.static('public'));
 
 app.get("/synchronizetime", (req, res) => { // Integration point: This endpoint handles the SSE connection with the client.
     res.writeHead(200, {
-        "Content-Type": "text/event-stream",
-        "Cache-Control": "no-cache",
-        "Connection": "keep-alive"
+        "Content-Type": "text/event-stream", // Angiver at dette er en Server-Sent Events (SSE) stream
+        "Cache-Control": "no-cache", // Forhindrer caching så klienten altid får nyeste data
+        "Connection": "keep-alive" // Holder forbindelsen åben mellem klient og server
     });
 
     const intervalId = setInterval(() => sendTimeToClient(res), 1000);
