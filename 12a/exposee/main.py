@@ -7,6 +7,7 @@ WEBHOOKS_FILE = "webhooks.json"
 
 @app.post("/register")
 async def register(request: Request):
+    # INTEGRATION POINT: Her sker integrationen ved at modtage webhook-data fra eksterne systemer
     body = await request.json()
     with open(WEBHOOKS_FILE, "r") as f:
         webhooks = json.load(f)
@@ -17,6 +18,7 @@ async def register(request: Request):
 
 @app.post("/unregister")
 async def unregister(request: Request):
+    # INTEGRATION POINT: Her sker integrationen ved at fjerne webhook-data fra eksterne systemer
     body = await request.json()
     with open(WEBHOOKS_FILE, "r") as f:
         webhooks = json.load(f)
@@ -45,6 +47,8 @@ async def get_ping():
 
     for webhook in webhooks:
         try:
+            # INTEGRATION POINT: Her sker integrationen til eksterne systemer
+            # Serveren sender et HTTP POST-request til hver registreret webhook-URL
             requests.post(webhook["url"], json={"event": webhook["event"]})
         except Exception as e:
             print(f"Fejl ved webhook {webhook['url']}: {e}")
