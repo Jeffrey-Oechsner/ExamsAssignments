@@ -74,7 +74,9 @@ app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'login.html'));
 });
 
-// /Login håndterer login-formularen og autentificerer brugeren med Passport.
+// Her sker selve integrationen mellem Express og Passport. Når brugeren sender login-formularen, 
+// aktiveres Passport,
+// som bruger LocalStrategy til at tjekke email og password. Hvis login lykkes, oprettes en session.
 app.post('/login', passport.authenticate('local', {
   successRedirect: '/',
   failureRedirect: '/login?error=true'
