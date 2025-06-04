@@ -34,7 +34,7 @@ const users = [
   { id: 1, email: 'jeffoech1995@gmail.com', password: '1234' }
 ];
 
-// PASSPORT-LOCAL INTEGRATION STARTER HER
+
 // LocalStrategy brugeas til at autentificere users med email og password i arrayet.
 passport.use(new LocalStrategy({
   usernameField: 'email',
@@ -44,7 +44,7 @@ passport.use(new LocalStrategy({
   if (!user) return done(null, false, { message: 'Forkert login' });
   return done(null, user);
 }));
-// PASSPORT-LOCAL INTEGRATION SLUTTER HER
+
 
 // serializeUser gemmer users id i sessionen, når useren logger ind.
 passport.serializeUser((user, done) => {
@@ -74,13 +74,12 @@ app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'login.html'));
 });
 
-// Her sker selve integrationen mellem Express og Passport. Når brugeren sender login-formularen, 
-// aktiveres Passport,
-// som bruger LocalStrategy til at tjekke email og password. Hvis login lykkes, oprettes en session.
+// Her sker integrationen mellem Express og Passport (login-validering og session).
 app.post('/login', passport.authenticate('local', {
   successRedirect: '/',
   failureRedirect: '/login?error=true'
 }));
+// Her slutter integrationen.
 
 // /Logout håndterer logout og fjerner brugeren fra sessionen.
 app.get('/logout', (req, res) => {

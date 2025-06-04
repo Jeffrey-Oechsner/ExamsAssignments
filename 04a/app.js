@@ -4,7 +4,7 @@ const app = express();
 
 app.use(express.static('public'));
 
-app.get("/synchronizetime", (req, res) => { // Integration point: This endpoint handles the SSE connection with the client.
+app.get("/synchronizetime", (req, res) => {// her sker integrationen fordi denne route opretter en SSE-forbindelse til klienten og sender data løbende
     res.writeHead(200, {
         "Content-Type": "text/event-stream", // Angiver at dette er en Server-Sent Events (SSE) stream
         "Cache-Control": "no-cache", // Forhindrer caching så klienten altid får nyeste data

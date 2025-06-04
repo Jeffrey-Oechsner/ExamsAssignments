@@ -1,7 +1,7 @@
 import knex from 'knex';
 import knexConfig from '../knexfile.js';
 
-// INTEGRATION POINT: Her integreres Knex med applikationen ved at oprette en databaseforbindelse
+// her sker integration: Her oprettes forbindelsen mellem Knex og databasen, så applikationen kan udføre SQL-forespørgsler via Knex
 const db = knex(knexConfig);
 
 db.raw('SELECT 1+1 AS result')

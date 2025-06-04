@@ -5,30 +5,25 @@ import csv
 
 def read_txt(file_path):
     with open(file_path, "r", encoding="utf-8") as file:
-        return file.read()
-    # Here happens the integration: Reading TXT file from the provided path
+        return file.read() # her sker integration: læser og integrerer indholdet af tekstfilen i systemet
 
 def read_json(file_path):
     with open(file_path, "r", encoding="utf-8") as file:
-        return json.load(file)
-    # Here happens the integration: Reading and parsing JSON file from the provided path
+        return json.load(file) # her sker integration: læser og parser JSON-filen, så data kan bruges i Python
 
 def read_yaml(file_path):
     with open(file_path, "r", encoding="utf-8") as file:
-        return yaml.safe_load(file)
-    # Here happens the integration: Reading and parsing YAML file from the provided path
+        return yaml.safe_load(file) # her sker integration: læser og parser YAML-filen
 
 def read_xml(file_path):
-    tree = ET.parse(file_path)
+    tree = ET.parse(file_path) # her sker integration: læser og parser XML-filen fra filsystemet
     root = tree.getroot()
     return {child.tag: child.text for child in root}
-    # Here happens the integration: Reading and parsing XML file from the provided path
 
 def read_csv(file_path):
     with open(file_path, "r", encoding="utf-8") as file:
         reader = csv.DictReader(file)
-        return [row for row in reader]
-    # Here happens the integration: Reading and parsing CSV file from the provided path
+        return [row for row in reader] # her sker integration: læser og parser CSV-filen til Python-objekter
 
 if __name__ == "__main__":
     print("TXT Data:", read_txt("../data_files/data.txt"))

@@ -14,6 +14,7 @@ app.use(express.json());
 /**
  * Endpoint to add a new grocery item.
  */
+// her sker integration - TypeDoc læser denne JSDoc-kommentar for at generere dokumentation
 router.post("/groceries", (req: any, res: any) => {
     const { id, name, price } = req.body;
     const grocery = new Grocery(id, name, price);
@@ -24,6 +25,7 @@ router.post("/groceries", (req: any, res: any) => {
 /**
  * Endpoint to retrieve all grocery items.
  */
+// her sker integration - TypeDoc læser denne JSDoc-kommentar for at generere dokumentation
 router.get("/groceries", (req: any, res: any) => {
     res.send(getGroceries());
 });
@@ -31,6 +33,7 @@ router.get("/groceries", (req: any, res: any) => {
 /**
  * Endpoint to update a grocery item by ID.
  */
+// her sker integration - TypeDoc læser denne JSDoc-kommentar for at generere dokumentation
 router.put("/groceries/:id", (req: any, res: any) => {
     const { id } = req.params;
     const { name, price } = req.body;
@@ -51,6 +54,7 @@ router.put("/groceries/:id", (req: any, res: any) => {
 /**
  * Endpoint to delete a grocery item by ID.
  */
+// her sker integration - TypeDoc læser denne JSDoc-kommentar for at generere dokumentation
 router.delete("/groceries/:id", (req: any, res: any, next: any) => {
     try {
         const { id } = req.params;

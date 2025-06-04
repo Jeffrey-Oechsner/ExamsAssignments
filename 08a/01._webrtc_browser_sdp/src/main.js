@@ -59,8 +59,12 @@ async function createAnswer() {
   if (!offer) return alert("Offer is required");
   offer = JSON.parse(offer);
 
-  // HER ER INTEGRATIONEN: Her integreres SDP offer fra client 1 til client 2
-  await peerConnection.setRemoteDescription(offer);
+ 
+ 
+  // Her modtager client 2 SDP offer fra client 1 og sætter det som remote description.
+  // Dette trin etablere WebRTC-forbindelsen mellem de to browsere.
+  await peerConnection.setRemoteDescription(offer);  // her sker integration
+
 
   const answer = await peerConnection.createAnswer();
   await peerConnection.setLocalDescription(answer);
@@ -73,10 +77,11 @@ async function addAnswer() {
   if (!answer) return alert("Answer is required");
   answer = JSON.parse(answer);
 
-  // HER ER INTEGRATIONEN: Her integreres SDP answer fra client 2 til client 1
+   // her sker integration (start) // Sætter SDP answer fra client 2 som remote description hos client 1 for at fuldføre WebRTC-forbindelsen
   if (!peerConnection.currentRemoteDescription) {
     await peerConnection.setRemoteDescription(answer);
   }
+  // her sker integration (slut)
 }
 
 // Event listeners

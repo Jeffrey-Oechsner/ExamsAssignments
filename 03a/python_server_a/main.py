@@ -83,8 +83,8 @@ def read_txt_file():
 
 
 # Hent data fra `node_server_b`
-# Integration point: Fetches data from the Node.js server's `/json` endpoint using the requests library.
-@app.get("/from-node")
+# her sker integration - fordi denne route bruger requests til at hente data fra Node.js-serverens /json-endpoint og returnerer det til klienten
+@app.get("/from-node") # her sker integration
 def get_from_node():
     # Return: dict (Python dictionary) – med nøgler og værdier fra Node.js-serveren
     try:
