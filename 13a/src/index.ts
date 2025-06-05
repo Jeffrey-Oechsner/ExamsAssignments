@@ -41,13 +41,13 @@ const resolvers = {
 const schema = makeExecutableSchema({ typeDefs, resolvers });
 
 
-// integration sker her start
+ 
 // hvor både Apollo Server (HTTP) og WebSocketServer (realtid/subscriptions) kobles sammen med det samme GraphQL-schema.
 // Det betyder, at queries, mutations og subscriptions alle virker på samme endpoint (/graphql) – både via HTTP og WebSocket.
-const wsServer = new WebSocketServer({
+const wsServer = new WebSocketServer({ // integration sker her
   server: httpServer,
   path: '/graphql',
-});
+}); // her slutter integrationen
 
 // Hand in the schema we just created and have the WebSocketServer start listening.
 const serverCleanup = useServer({ schema }, wsServer);  
@@ -68,7 +68,7 @@ const server = new ApolloServer({
       }
     }
   ],
-}); // her slutter integrationen
+}); 
 
 await server.start();
 
