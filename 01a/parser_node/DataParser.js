@@ -1,8 +1,13 @@
-const fs = require("fs");
-const yaml = require("js-yaml");
-const xml2js = require("xml2js");
-const csv = require("csv-parser");
-const path = require("path"); // Hjælper med korrekte filstier
+import fs from "fs";
+import yaml from "js-yaml";
+import xml2js from "xml2js";
+import csv from "csv-parser";
+import path from "path";
+import { fileURLToPath } from "url";
+
+// ES modules: __dirname workaround
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Funktion til at generere den rigtige sti til filerne
 const getFilePath = (filename) => path.join(__dirname, "../data_files", filename); // integration sker her: dynamisk filstihåndtering, så alle parser-funktioner kan finde de rigtige datafiler
