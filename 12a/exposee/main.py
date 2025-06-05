@@ -7,7 +7,7 @@ WEBHOOKS_FILE = "webhooks.json"
 
 @app.post("/register")
 async def register(request: Request):
-    # her sker integration: integrator modtager webhook-data fra eksterne systemer og gemmer dem, så andre systemer kan blive notificeret senere
+    # her sker integration: exposee modtager webhook-data fra eksterne systemer og gemmer dem, så andre systemer kan blive notificeret senere
     body = await request.json()
     with open(WEBHOOKS_FILE, "r") as f:
         webhooks = json.load(f)
