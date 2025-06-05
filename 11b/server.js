@@ -20,7 +20,6 @@ app.use(express.json()); // modtage JSON data fra post requests
 app.post('/create-checkout-session', async (req, res) => {
   try {
     // STRIPE INTEGRATION STARTER HER
-    // Her oprettes Stripe checkout session og integrationen sker
     // Stripe integration: Her oprettes en checkout session med Stripe API'et, så brugeren kan betale online
       const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
